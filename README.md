@@ -1,23 +1,21 @@
-# 🔐 Laboratorio de Seguridad: Ataques de Fuerza Bruta con Hydra
+# Laboratorio de Seguridad: Ataques de Fuerza Bruta con Hydra
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://www.docker.com/)
 [![Security](https://img.shields.io/badge/Security-Educational-red.svg)](https://owasp.org/)
 
-> **⚠️ ADVERTENCIA**: Este proyecto es **EXCLUSIVAMENTE** para fines educativos. No usar en sistemas sin autorización explícita.
-
-## 📚 Descripción
+## Descripción
 
 Proyecto universitario que demuestra vulnerabilidades de autenticación (OWASP A07:2021) mediante ataques de fuerza bruta en un entorno local controlado con Docker.
 
-## 🎯 Objetivos
+## Objetivos
 
-- ✅ Implementar ambiente vulnerable con 6 servicios
-- ✅ Ejecutar ataques automatizados con Hydra
-- ✅ Analizar efectividad según protocolo
-- ✅ Proponer medidas de mitigación
+-  Implementar ambiente vulnerable con 6 servicios
+-  Ejecutar ataques automatizados con Hydra
+-  Analizar efectividad según protocolo
+-  Proponer medidas de mitigación
 
-## 🚀 Instalación Rápida
+## Instalación Rápida
 
 ```bash
 # Clonar repositorio
@@ -31,7 +29,7 @@ cd bruteforce-security-lab
 ./hydra-attacks.sh
 ```
 
-## 🎓 Servicios Vulnerables
+## Servicios Vulnerables
 
 | Servicio | Puerto | Usuario | Contraseña |
 |----------|--------|---------|------------|
@@ -42,7 +40,7 @@ cd bruteforce-security-lab
 | Flask App | 5000 | admin | admin123 |
 | MySQL | 3306 | admin | admin123 |
 
-## 💻 Uso Básico
+## Uso Básico
 
 ```bash
 ./start-lab.sh      # Iniciar
@@ -51,10 +49,10 @@ cd bruteforce-security-lab
 ./stop-lab.sh       # Detener
 ```
 
-## 📄 Licencia
+## Licencia
 
 MIT License - Solo para fines educativos
 
-## ⚖️ Legal
+## Legal
 
 **USO EDUCATIVO ÚNICAMENTE**. El acceso no autorizado a sistemas es ilegal.
