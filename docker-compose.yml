@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  ssh-server:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: lab_ssh_server
+    hostname: ssh-node-1
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=admin123
+      - USER_NAME=admin
+    ports:
+      - "2222:2222"
+    volumes:
+      - ./ssh-server/config:/config
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.10
+
+  ssh-server-2:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: lab_ssh_server_2
+    hostname: ssh-node-2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=password123
+      - USER_NAME=user
+    ports:
+      - "2223:2222"
+    volumes:
+      - ./ssh-server/config2:/config
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.11
+
+  ftp-server:
+    image: fauria/vsftpd
+    container_name: lab_ftp_server
+    hostname: ftp-node-1
+    environment:
+      - FTP_USER=admin
+      - FTP_PASS=admin123
+      - PASV_ADDRESS=127.0.0.1
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - ./ftp-server/data:/home/vsftpd
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.20
+
+  web-server:
+    image: httpd:2.4
+    container_name: lab_web_server
+    hostname: web-node-1
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web-server/htdocs:/usr/local/apache2/htdocs
+      - ./web-server/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./web-server/.htpasswd:/usr/local/apache2/.htpasswd
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.30
+
+  custom-web-app:
+    build: ./web-server/app
+    container_name: lab_custom_app
+    hostname: webapp-node-1
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+    volumes:
+      - ./web-server/app:/app
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.40
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: lab_mysql_db
+    hostname: db-node-1
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass123
+      - MYSQL_DATABASE=userdb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.50
+
+networks:
+  lab_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

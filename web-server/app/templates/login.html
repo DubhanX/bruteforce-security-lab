@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Security Lab</title>
+    <style>
+        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); width: 400px; }
+        h2 { text-align: center; color: #333; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 5px; 
+                font-size: 16px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #5568d3; }
+        .alert { padding: 12px; margin: 10px 0; border-radius: 5px; }
+        .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔐 Iniciar Sesión</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Usuario" required value="{{ username if username else '' }}">
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
+            ⚠️ Laboratorio educativo - Sistema vulnerable
+        </p>
+    </div>
+</body>
+</html>

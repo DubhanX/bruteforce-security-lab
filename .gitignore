@@ -1,0 +1,47 @@
+# Logs
+logs/*.log
+*.log
+web-server/app/logs/*.log
+
+# Docker volumes
+mysql-data/
+ssh-server/config/
+ssh-server/config2/
+ftp-server/data/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup
+*.bak
+*.backup
+*.tar.gz
+*.zip
+
+# Secrets
+.env
+secrets/
+*.pem
+*.key
+
+# Temporal
+tmp/
+temp/

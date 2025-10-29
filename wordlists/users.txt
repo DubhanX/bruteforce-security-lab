@@ -1,0 +1,15 @@
+admin
+administrator
+root
+user
+test
+demo
+guest
+support
+webmaster
+manager
+student
+profesor
+alumno
+operador
+developer

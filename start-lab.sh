@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "🚀 Iniciando servicios del laboratorio..."
+docker-compose up -d
+echo ""
+echo "✅ Servicios iniciados exitosamente"
+echo ""
+echo "Servicios disponibles:"
+echo "  - SSH Node 1:      localhost:2222"
+echo "  - SSH Node 2:      localhost:2223"
+echo "  - FTP:             localhost:21"
+echo "  - HTTP Basic Auth: http://localhost:8080"
+echo "  - Flask App:       http://localhost:5000"
+echo "  - MySQL:           localhost:3306"
+echo ""
+echo "Usa './status-lab.sh' para ver el estado"
